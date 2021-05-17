@@ -20,7 +20,7 @@ router.setState = function() {
   }
 
   // home page
-  if(currentPath=="/index.html"){
+  if(currentPath=="/lab7/"){
     document.body.className = null;
     var homeButton = document.getElementsByTagName('h1')[0];
     homeButton.innerHTML = "Journal Entries";
