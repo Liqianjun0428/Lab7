@@ -4,7 +4,7 @@
 import { router } from './router.js'; // Router imported so you can use it to manipulate your SPA app here
 const setState = router.setState;
 var jEntriesNum = 1;
-router.setState("home");
+router.setState();
 // Make sure you register your service worker here too
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // let singlePost = document.createElement('entry-page');
             // singlePost.entry = this.entry;
             // document.body.append(singlePost);
-            history.pushState(null,'EntryPage'+num,'/lab7/'+'Entry'+num);
+            history.pushState(null,'EntryPage'+num,'Entry'+num);
             router.setState();
         });
       };
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 var settingsButton = document.getElementsByTagName('img')[0];
 settingsButton.addEventListener("click", e=>{
   // console.log("settings clicked");
-  history.pushState(null,'Settings','/lab7/settings');
+  history.pushState(null,'Settings','settings');
   router.setState();
   // let settings = document.createElement('settings');
   // document.body.append(settings);
@@ -79,7 +79,7 @@ settingsButton.addEventListener("click", e=>{
 var homeButton = document.getElementsByTagName('h1')[0];
 homeButton.addEventListener('click', e=>{
   // console.log("home clicked");
-  history.pushState(null,'HomePage','/lab7/');
+  history.pushState(null,'HomePage','index.html');
   router.setState();
 });
 
