@@ -7,12 +7,14 @@ export const router = {
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
-router.setState = function() {
+
+router.setState = function(page) {
   var currentPath = window.location.pathname;
   console.log(currentPath);
   // console.log(pageNum);
   // settings page
-  if(currentPath == "/settings"){
+  var pageNums = currentPath.replace(/.*\D/g, "");
+  if(currentPath == "/lab7/settings"){
     document.body.className = "settings";
     var homeButton = document.getElementsByTagName('h1')[0];
     homeButton.innerHTML = "settings";
@@ -20,7 +22,7 @@ router.setState = function() {
   }
 
   // home page
-  if(currentPath=="/index.html"){
+  else if(currentPath=="/lab7/" || page == "home"){
     document.body.className = null;
     var homeButton = document.getElementsByTagName('h1')[0];
     homeButton.innerHTML = "Journal Entries";
@@ -30,9 +32,9 @@ router.setState = function() {
     }
   }
 
-  var pageNums = currentPath.match(/\d+/);
-  if(pageNums!=null){
-    var pageNum = pageNums[0];
+  
+  else if(pageNums!=null){
+    var pageNum = pageNums;
     document.body.className = "single-entry";
     let singlePost = document.createElement('entry-page');
     let post = document.getElementsByTagName('journal-entry')[pageNum-1];
@@ -40,6 +42,8 @@ router.setState = function() {
     document.body.append(singlePost);
     var homeButton = document.getElementsByTagName('h1')[0];
     homeButton.innerHTML = "Entry"+pageNum;
+  }else{
+    alert("page does not exist");
   }
   // settings page
   // if(pageNum!=null){
