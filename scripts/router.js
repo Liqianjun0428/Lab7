@@ -1,11 +1,52 @@
 // router.js
 
-export const router = {};
+export const router = {
+  
+};
 
 /**
  * Changes the "page" (state) that your SPA app is currently set to
  */
 router.setState = function() {
+  var currentPath = window.location.pathname;
+  console.log(currentPath);
+  // console.log(pageNum);
+  // settings page
+  if(currentPath == "/settings"){
+    document.body.className = "settings";
+    var homeButton = document.getElementsByTagName('h1')[0];
+    homeButton.innerHTML = "settings";
+
+  }
+
+  // home page
+  if(currentPath=="/index.html"){
+    document.body.className = null;
+    var homeButton = document.getElementsByTagName('h1')[0];
+    homeButton.innerHTML = "Journal Entries";
+    var entryPage = document.getElementsByTagName('entry-page');
+    for(var i = 0; i<entryPage.length;i++){
+      entryPage[i].remove();
+    }
+  }
+
+  var pageNums = currentPath.match(/\d+/);
+  if(pageNums!=null){
+    var pageNum = pageNums[0];
+    document.body.className = "single-entry";
+    let singlePost = document.createElement('entry-page');
+    let post = document.getElementsByTagName('journal-entry')[pageNum-1];
+    singlePost.entry = post.entry;
+    document.body.append(singlePost);
+    var homeButton = document.getElementsByTagName('h1')[0];
+    homeButton.innerHTML = "Entry"+pageNum;
+  }
+  // settings page
+  // if(pageNum!=null){
+    
+  // }
+
+
   /**
    * - There are three states that your SPA app will have
    *    1. The home page
@@ -35,4 +76,5 @@ router.setState = function() {
    *    1. You may add as many helper functions in this file as you like
    *    2. You may modify the parameters of setState() as much as you like
    */
+  
 }
